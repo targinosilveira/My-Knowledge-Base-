@@ -1,0 +1,18 @@
+My Knowledge Base 
+
+
+[[Postgres]]
+Data Atual SEM “Time Zone”
+//Retorna a data atual formatada por data e hora com minutos e segundos.
+select LOCALTIMESTAMP (0)
+
+Tags: current_time postgres data hora
+
+[[Linux]]
+
+Executa comando com sudo sem digitar senha do usuário
+//Edite o arquivo sudores e ponha a opção NOPASSWORD
+usuario ALL=NOPASSWD:/sbin/shutdown
+
+Tags: linux sudo root
+
