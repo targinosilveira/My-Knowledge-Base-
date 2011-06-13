@@ -1,14 +1,95 @@
 My Knowledge Base 
 
 
+[[java]]
+
+Instalando o JDK6 no Debian 5.0
+
+sudo apt-get install sun-java6-jdk
+
+tags: java debian debian5.0 jdk jdk6
+
+
+
 [[Postgres]]
+
+
 Data Atual SEM “Time Zone”
 //Retorna a data atual formatada por data e hora com minutos e segundos.
 select LOCALTIMESTAMP (0)
 
 Tags: current_time postgres data hora
 
+Select para saber a versão do postgres 
+
+SELECT version();
+
+tags: postgres versão
+
+Alterar a senha do usuário postgres
+precisa estar logado como root no postgres e entrar psql
+ALTER USER postgres WITH PASSWORD 'novasenha'
+
+tags: postgres alterarsenha
+
+
+Listar a estrutura de uma tabela.
+
+\d nome_da_tabela
+
+tags: postgres estrutura de tabela
+
+
+Ativa o timing de execução de consultas no psql do postgres
+
+\timing 
+
+tags: postgres time timing
+
+
+Criar banco com base em um já existente.
+
+CREATE DATABASE m2m_frota_eog_db 
+OWNER postgres 
+TABLESPACE pgdata1 
+TEMPLATE m2m_frota_eog_old_db
+ENCODING = 'UTF8';
+
+CREATE DATABASE m2m_frota_eog_teste_db
+WITH OWNER = "postgres"
+     ENCODING = 'UTF-8';
+
+tags: postgres create database template
+
+
+Exportar tabelas ou consultas para TXT ou CSV
+\COPY (select * from metric limit 3) TO '/caminho_do_arquivo_a_ser_gerado.csv' WITH DELIMITER ';' NULL 'null' CSV  HEADER
+
+tags: postgres exportação CSV 
+
+Alterar nome de uma banco de dados
+
+ALTER DATABASE m2m_frota_eog_teste_db  RENAME TO m2m_frota_eog_db;
+
+tags: database alter
+
+
+Link de tutorial que ensina como alterar dados de tablespace para banco, tabelas e indices
+
+http://keniamilene.wordpress.com/2008/03/14/alterando-tablespace-de-tabelas-e-indices-no-postgresql/
+
+
+
+[[MySql]]
+
+
 [[Linux]]
+
+Formata uma partição com o tipo de file system ext3
+
+sudo mkfs -t ext3 -L pgdata1 -v /dev/sdc1
+
+tags: linux partição formatar formatação
 
 Executa comando com sudo sem digitar senha do usuário
 //Edite o arquivo sudores e ponha a opção NOPASSWORD
@@ -16,3 +97,92 @@ usuario ALL=NOPASSWD:/sbin/shutdown
 
 Tags: linux sudo root
 
+Localizar processo pela porta
+
+lsof -w -n -i tcp:8080
+
+Tags: processo porta kill
+
+Enviando e-mail através do shell script
+echo "Enviando e-mail via shell script...." | mail -s "Targino eh o cara" targino_silveira@yahoo.com.br
+
+tags: shell script email
+
+Fazer bootable.
+Fazer com transformar uma partição bootlable.
+
+fdisk /dev/sdb
+opção a <enter>
+opção w <enter>
+
+tags: linux partição
+
+Criar partições em discos.
+
+fdisk /dev/sdb--o dispositivo
+opção n <enter>
+opção w <enter>
+
+tags: linux partição
+
+Montando uma partição 
+
+sudo mount -t tipo /dev/dispositivo -rw /diretorio_para_sermontado
+
+tags: linux partição ext3
+
+
+Desmontando uma partição 
+
+sudo umount /dev/dispositivo
+
+tags: linux partição ext3
+
+
+Usando o comando cut para cortar pedaços desejados do texto.
+$ echo 'aaa:bbb:ccc' | cut -f1 -d':'
+aaa
+
+tags: linux grep cut recortar
+	
+
+Montando partição pelo fstab
+
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/sdc1       /pgdata2        ext3    defaults        0       0
+
+tags: linux partição ext3 fstab
+
+
+Como alterar a data e hora do Sistema Operacional
+
+sudo date -s "05/13/2011 20:07"
+
+tags: data linux
+
+
+Artigo que ensina como verificar a performace de um servidor
+
+http://www.vivaolinux.com.br/artigo/Bottlenecks-Metricas-de-performance-de-servidores?pagina=1
+
+tags: linux performace servidor
+
+
+[[M2MFrotaWeb]]
+Link das camera da J Jardim.
+http://jjardim.no-ip.org:8080/showip/?Empresa=Alpha&Carro=027
+
+tags: m2m cameras
+
+
+Link para cadastros de paineis do M2M Frota Web.
+http://173.224.120.20:8802/forecast/pages/panel05/index.html?panel=panel05&locale=pt_BR&panelId=
+
+tags: m2m paineis previsão
+
+[[Links e Sites]]
+
+//Otimo tutorial que apresenta o uso de uma biblioteca de SSH para Ruby.
+http://johanharjono.com/archives/602
+
+tags: ruby ssh 
