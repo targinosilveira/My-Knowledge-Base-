@@ -27,7 +27,7 @@ SELECT version();
 tags: postgres versão
 
 
-Select para lista base de dados e tablespaces 
+Select para listar base de dados e tablespaces 
 
 SELECT d.datname as "Name",
        r.rolname as "Owner",
@@ -176,6 +176,11 @@ sudo date -s "05/13/2011 20:07"
 
 tags: data linux
 
+Descompactar um arquivo do tipo tar.gz
+
+tar -vzxf nomedoarquivo.tar.gz
+
+tags: tar.gz descompactar
 
 Artigo que ensina como verificar a performace de um servidor
 
