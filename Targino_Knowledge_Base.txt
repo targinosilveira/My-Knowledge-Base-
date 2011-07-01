@@ -98,6 +98,12 @@ http://keniamilene.wordpress.com/2008/03/14/alterando-tablespace-de-tabelas-e-in
 
 [[MySql]]
 
+Dar permissões de usuários no MySql.
+
+grant all privileges on somedb.* to targino@"%" identified by '123456';
+
+tags: permissões mysql
+
 
 [[Linux]]
 
