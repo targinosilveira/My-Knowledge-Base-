@@ -107,6 +107,12 @@ tags: permissões mysql
 
 [[Linux]]
 
+Usando abas no vim
+
+:help tabpage 
+
+tags: vim abas vi
+
 Formata uma partição com o tipo de file system ext3
 
 sudo mkfs -t ext3 -L pgdata1 -v /dev/sdc1
