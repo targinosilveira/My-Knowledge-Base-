@@ -42,6 +42,23 @@ ORDER BY 1;
 tags: tablespace database
 
 
+Querie para varificar a existencia de registros duplicados.
+
+SELECT vehicleid, 
+COUNT(vehicleid) AS numero_de_ocorrencias
+FROM vehicle
+GROUP BY vehicleid
+HAVING ( COUNT(vehicleid) > 1 )
+
+tags: registros duplicados
+
+Desabilita as constraints em uma transação
+
+SET CONSTRAINTS ALL DEFERRED;
+
+tags: constraints desabilitar 
+
+
 Alterar a senha do usuário postgres
 precisa estar logado como root no postgres e entrar psql
 ALTER USER postgres WITH PASSWORD 'novasenha'
@@ -180,6 +197,11 @@ Montando partição pelo fstab
 /dev/sdc1       /pgdata2        ext3    defaults        0       0
 
 tags: linux partição ext3 fstab
+
+sudo vim /etc/timezone
+
+America/Fortaleza
+
 
 
 Como alterar a data e hora do Sistema Operacional
