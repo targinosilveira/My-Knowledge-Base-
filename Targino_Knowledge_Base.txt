@@ -184,6 +184,11 @@ sudo umount /dev/dispositivo
 tags: linux partição ext3
 
 
+Alterando o timezone 
+
+dpkg-reconfigure tzdata
+
+
 Usando o comando cut para cortar pedaços desejados do texto.
 $ echo 'aaa:bbb:ccc' | cut -f1 -d':'
 aaa
@@ -201,6 +206,10 @@ tags: linux partição ext3 fstab
 sudo vim /etc/timezone
 
 America/Fortaleza
+
+export TZ=America/Fortaleza
+
+
 
 
 
