@@ -42,6 +42,20 @@ ORDER BY 1;
 tags: tablespace database
 
 
+Select para verificar a 
+SELECT esquema, tabela,
+       pg_size_pretty(pg_relation_size(esq_tab)) AS tamanho,
+       pg_size_pretty(pg_total_relation_size(esq_tab)) AS tamanho_total
+  FROM (SELECT tablename AS tabela,
+               schemaname AS esquema,
+               schemaname||'.'||tablename AS esq_tab
+          FROM pg_catalog.pg_tables
+         WHERE schemaname NOT
+            IN ('pg_catalog', 'information_schema', 'pg_toast') ) AS x
+ ORDER BY pg_total_relation_size(esq_tab) DESC;
+
+
+
 Querie para varificar a existencia de registros duplicados.
 
 SELECT vehicleid, 
@@ -153,6 +167,20 @@ echo "Enviando e-mail via shell script...." | mail -s "Targino eh o cara" targin
 
 tags: shell script email
 
+
+Criando uma chave publica para um computador/servidor
+
+ssh-keygen -t dsa
+
+tags: ssh chave publica acesso remoto
+
+
+Copiando uma chave publica de um computador/servidor para outro.
+
+ssh-copy-id -i ~/.ssh/id_dsa.pub unidentalbk@67.205.57.126
+
+tags: ssh chave publica acesso remoto 
+
 Fazer bootable.
 Fazer com transformar uma partição bootlable.
 
@@ -195,7 +223,13 @@ aaa
 
 tags: linux grep cut recortar
 	
+Deletando arquivo com quantidade mais antigos
 
+find /path/to/files* -mtime +5 -exec rm {} \;
+
+tags: linux arquivos deletar
+	
+	
 Montando partição pelo fstab
 
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
