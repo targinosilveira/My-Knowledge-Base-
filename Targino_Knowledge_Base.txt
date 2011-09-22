@@ -1,6 +1,12 @@
 My Knowledge Base 
 
 
+[[Business]]
+
+//Empresa com serviços e gerenciamentos iguais aos da Millennium IT & Dev Corporation.
+
+Corporation http://www.frontrange.com/
+
 [[java]]
 
 Instalando o JDK6 no Debian 5.0
@@ -12,6 +18,28 @@ tags: java debian debian5.0 jdk jdk6
 
 
 [[Postgres]]
+
+
+Instalando o Postgres 8.3 
+
+apt-get install postgresql-8.3 postgresql-client-8.3 postgresql-contrib-8.3
+
+tags: postgres 
+
+
+Instalando o Postgis para o Postgres 8.3 
+
+apt-get install postgresql-8.3-postgis
+
+
+Alterar a memoria compartilhada do linux para aumentar a quantidade de conexões 
+
+sudo sysctl -w kernel.shmmax=629145600
+//Calculo a quantidade de memoria em MBx1024x1024=bytes
+//600*1024*1024=629145600
+//Editar o arquivo sudo vim /etc/sysctl.conf -- adicionar kernel.shmmax=629145600 para reiniciar o sistema.
+
+tags:linux mamoria compartilhada postgres max_conections
 
 
 Data Atual SEM “Time Zone”
@@ -42,7 +70,8 @@ ORDER BY 1;
 tags: tablespace database
 
 
-Select para verificar a 
+Select para verificar o tamanho das tabelas de um banco
+
 SELECT esquema, tabela,
        pg_size_pretty(pg_relation_size(esq_tab)) AS tamanho,
        pg_size_pretty(pg_total_relation_size(esq_tab)) AS tamanho_total
@@ -54,7 +83,7 @@ SELECT esquema, tabela,
             IN ('pg_catalog', 'information_schema', 'pg_toast') ) AS x
  ORDER BY pg_total_relation_size(esq_tab) DESC;
 
-
+tags: tabelas postgres
 
 Querie para varificar a existencia de registros duplicados.
 
@@ -92,6 +121,15 @@ Ativa o timing de execução de consultas no psql do postgres
 \timing 
 
 tags: postgres time timing
+
+
+Criar tablespace
+
+CREATE TABLESPACE yats LOCATION '/opt/m2m/tablespace';
+
+//Query que exemplifica como criar uma  tablespace no Postgres
+
+tags: postgres tablespaces tablespace
 
 
 Criar banco com base em um já existente.
@@ -144,17 +182,6 @@ Usando abas no vim
 
 tags: vim abas vi
 
-Formata uma partição com o tipo de file system ext3
-
-sudo mkfs -t ext3 -L pgdata1 -v /dev/sdc1
-
-tags: linux partição formatar formatação
-
-Executa comando com sudo sem digitar senha do usuário
-//Edite o arquivo sudores e ponha a opção NOPASSWORD
-usuario ALL=NOPASSWD:/sbin/shutdown
-
-Tags: linux sudo root
 
 Localizar processo pela porta
 
@@ -197,6 +224,19 @@ opção n <enter>
 opção w <enter>
 
 tags: linux partição
+
+
+Formata uma partição com o tipo de file system ext3
+
+sudo mkfs -t ext3 -L pgdata1 -v /dev/sdc1
+
+tags: linux partição formatar formatação
+
+Executa comando com sudo sem digitar senha do usuário
+//Edite o arquivo sudores e ponha a opção NOPASSWORD
+usuario ALL=NOPASSWD:/sbin/shutdown
+
+Tags: linux sudo root
 
 Montando uma partição 
 
@@ -244,7 +284,11 @@ America/Fortaleza
 export TZ=America/Fortaleza
 
 
+Deletando arquivos através de busca pelo find.
 
+rm -rf `find . -type d -name .svn`
+
+tags: linux deletar find
 
 
 Como alterar a data e hora do Sistema Operacional
@@ -264,6 +308,19 @@ Artigo que ensina como verificar a performace de um servidor
 http://www.vivaolinux.com.br/artigo/Bottlenecks-Metricas-de-performance-de-servidores?pagina=1
 
 tags: linux performace servidor
+
+
+Criando um arquivo de tamanho desejado com o DD
+
+dd if=/dev/zero of=/tmp/arquivo.img bs=1M count=100
+
+
+if=origem (/dev/zero)
+of=um_destino_qualquer
+bs= tamanho do bloco em Bytes (abreviações Mega,Giga)
+count= copia N vezes bs para o arquivo
+
+tags: dd criacao de arquivos 
 
 
 [[M2MFrotaWeb]]
