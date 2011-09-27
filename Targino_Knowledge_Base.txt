@@ -44,7 +44,21 @@ Instalando o Postgis para o Postgres 8.3
 apt-get install postgresql-8.3-postgis
 
 
-Alterar a memoria compartilhada do linux para aumentar a quantidade de conexões 
+Alterar a memoria compartilhada do linux para aumentar a quantidade de conexões
+
+
+Instalando o Postgresql9.1 no Debian Sqeeze 
+
+#update to install postgres 9.1
+## Postgres 9 hasn't been backported yet.  Manually added repos.
+deb http://ppa.launchpad.net/pitti/postgresql/ubuntu lucid main
+deb-src http://ppa.launchpad.net/pitti/postgresql/ubuntu lucid main
+
+sudo apt-get update 
+
+sudo apt-get install postgresql-9.1 libpq-dev
+
+tags: postgres9.1 sqeeze 
 
 sudo sysctl -w kernel.shmmax=629145600
 //Calculo a quantidade de memoria em MBx1024x1024=bytes
@@ -187,6 +201,24 @@ tags: permissões mysql
 
 
 [[Linux]]
+
+Correção do erro de locales do perl no linux.
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_US:en",
+	LC_ALL = "pt_BR.UTF-8",
+	LC_MESSAGES = "en_US.UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+sudo dpkg-reconfigure locales
+
+tags: perl locales
 
 Usando abas no vim
 
