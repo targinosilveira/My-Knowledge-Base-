@@ -16,6 +16,16 @@ sudo apt-get install sun-java6-jdk
 tags: java debian debian5.0 jdk jdk6
 
 
+Installing Java-Sun-JDK 6 on Debian Squeeze.
+# squeeze update to install java-sun-jdk6
+deb http://ftp.br.debian.org/debian/ squeeze main non-free
+deb-src http://ftp.br.debian.org/debian/ squeeze main non-free 
+
+sudo apt-get update
+sudo apt-get install sun-java6-jdk
+
+tags: java debian debian6.0 jdk jdk6
+
 
 [[Postgres]]
 
