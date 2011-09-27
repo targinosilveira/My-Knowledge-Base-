@@ -17,6 +17,8 @@ tags: java debian debian5.0 jdk jdk6
 
 
 Installing Java-Sun-JDK 6 on Debian Squeeze.
+vim /etc/apt/sources.list 
+
 # squeeze update to install java-sun-jdk6
 deb http://ftp.br.debian.org/debian/ squeeze main non-free
 deb-src http://ftp.br.debian.org/debian/ squeeze main non-free 
