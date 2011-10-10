@@ -375,6 +375,31 @@ count= copia N vezes bs para o arquivo
 tags: dd criacao de arquivos 
 
 
+[[Debina]]
+
+[[[Lenny]]]
+
+Lista de fontes para instalação e atualização de programas.
+
+###### Debian Main Repos
+deb http://ftp.br.debian.org/debian/ lenny main contrib non-free
+deb-src http://ftp.br.debian.org/debian/ lenny main contrib non-free
+
+###### Debian Update Repos
+deb http://security.debian.org/ lenny/updates main contrib non-free
+deb http://ftp.br.debian.org/debian/ lenny-proposed-updates main contrib non-free
+deb-src http://security.debian.org/ lenny/updates main contrib non-free
+deb-src http://ftp.br.debian.org/debian/ lenny-proposed-updates main contrib non-free
+
+Logo em seguida intalar o pacote 
+
+ apt-get install build-essential
+
+tags: debian lenny source lists
+
+
+
+
 [[M2MFrotaWeb]]
 Link das camera da J Jardim.
 http://jjardim.no-ip.org:8080/showip/?Empresa=Alpha&Carro=027
