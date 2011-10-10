@@ -34,7 +34,7 @@ tags: java debian debian6.0 jdk jdk6
 
 Instalando o Postgres 8.3 
 
-apt-get install postgresql-8.3 postgresql-client-8.3 postgresql-contrib-8.3
+apt-get install postgresql-8.3 postgresql-client-8.3 postgresql-contrib-8.3 postgresql-8.3-postgis
 
 tags: postgres 
 
@@ -74,7 +74,7 @@ select LOCALTIMESTAMP (0)
 
 Tags: current_time postgres data hora
 
-Select para saber a versão do postgres 
+Select para saber a versão do postgres  
 
 SELECT version();
 
@@ -201,6 +201,14 @@ tags: permissões mysql
 
 
 [[Linux]]
+
+
+Configurando proxy no Linux via linha de comando
+
+export http_proxy="http://usuario:senha@ip:porta"
+
+tags: linux proxy shell
+
 
 Correção do erro de locales do perl no linux.
 
