@@ -286,7 +286,7 @@ tags: linux partição formatar formatação
 
 Executa comando com sudo sem digitar senha do usuário
 //Edite o arquivo sudores e ponha a opção NOPASSWORD
-usuario ALL=NOPASSWD:/sbin/shutdown
+usuario ALL=NOPASSWD:ALL
 
 Tags: linux sudo root
 
@@ -417,4 +417,25 @@ tags: m2m paineis previsão
 //Otimo tutorial que apresenta o uso de uma biblioteca de SSH para Ruby.
 http://johanharjono.com/archives/602
 
-tags: ruby ssh 
+tags: ruby ssh
+
+
+[[Ruby]]
+
+Instalando o Ruby e sua principais bibliotecas no linux Debian.
+
+sudo apt-get install ruby irb rdoc libopenssl-ruby build-essential ruby1.8-dev libpq-dev
+
+tags: ruby debian5.0
+
+
+Instalando o RubyGem no Debian 5.0
+
+wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.10.tgz
+tar -xzvf rubygems-1.8.10.tgz 
+sudo ruby setup.rb
+sudo ln -s /usr/bin/gem1.8 /usr/bin/gem 
+
+tags: ruby rubygem
+
+
