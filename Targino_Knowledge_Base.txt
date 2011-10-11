@@ -203,6 +203,14 @@ tags: permissões mysql
 [[Linux]]
 
 
+Verificação de MPT RAID
+
+lspci | grep -i mpt # will tell you if the RAID controller is an MPT RAID controller or not. If it is, 
+apt-get install mpt-status # will install the RAID status package.
+mpt-status --autoload # will load the mptctl module and execute mpt-status.
+
+tags RAID MPT
+
 Configurando proxy no Linux via linha de comando
 
 export http_proxy="http://usuario:senha@ip:porta"
