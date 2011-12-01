@@ -44,6 +44,13 @@ Instalando o Postgis para o Postgres 8.3
 apt-get install postgresql-8.3-postgis
 
 
+Criando o cluster postgres quando a instalação não consegue fazer
+
+pg_createcluster 8.3 main --start
+
+tags postgres instalação
+
+
 Alterar a memoria compartilhada do linux para aumentar a quantidade de conexões
 
 
@@ -61,8 +68,13 @@ sudo apt-get install postgresql-9.1 libpq-dev
 tags: postgres9.1 sqeeze 
 
 sudo sysctl -w kernel.shmmax=629145600
+sudo sysctl -w kernel.shmmax=15728640000
+sudo sysctl -w kernel.shmall=6177438
+
 //Calculo a quantidade de memoria em MBx1024x1024=bytes
 //600*1024*1024=629145600
+//15000*1024*1024=15728640000
+//Editar o arquivo sudo vim /etc/sysctl.conf -- adicionar kernel.shmmax=629145600 para reiniciar o sistema.
 //Editar o arquivo sudo vim /etc/sysctl.conf -- adicionar kernel.shmmax=629145600 para reiniciar o sistema.
 
 tags:linux mamoria compartilhada postgres max_conections
@@ -304,6 +316,14 @@ sudo mount -t tipo /dev/dispositivo -rw /diretorio_para_sermontado
 
 tags: linux partição ext3
 
+
+Montando os diretorios "/proc" "/dev" "pts"
+
+mount -t proc none /chroot/proc
+mount -o bind /dev /chroot/dev
+mount -o bind /dev/pts /chroot/dev/pts
+
+tags mountar direotorios 
 
 Desmontando uma partição 
 
