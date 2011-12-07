@@ -310,6 +310,15 @@ usuario ALL=NOPASSWD:ALL
 
 Tags: linux sudo root
 
+
+Bloqueando e desbloqueando usuários no Linux.
+
+usermod -L usuário  #desbloqueia o usuário
+
+usermod -L usuário  #bloqueia o usuário
+
+tags: usuario bloquear
+
 Montando uma partição 
 
 sudo mount -t tipo /dev/dispositivo -rw /diretorio_para_sermontado
