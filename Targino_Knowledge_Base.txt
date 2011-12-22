@@ -93,6 +93,13 @@ SELECT version();
 tags: postgres versão
 
 
+Select para contar a quantidade de veículos que transmitiram durante um periodo de tempo.
+
+select count(*) from (select distinct(vehicle_vehicleid) from metric where metrictimestamp between '2011-12-19 00:00:00.000' and '2011-12-19 23:59:59.999') as count;
+
+tags: select transmissões count
+
+
 Select para listar base de dados e tablespaces 
 
 SELECT d.datname as "Name",
@@ -170,6 +177,15 @@ CREATE TABLESPACE yats LOCATION '/opt/m2m/tablespace';
 tags: postgres tablespaces tablespace
 
 
+Select para listar tablespaces com seus dono e caminhos no sistema operacional.
+
+SELECT T.oid, T.spcname, T.spclocation, U.usename
+FROM pg_tablespace T, pg_user U
+WHERE T.spcowner = U.usesysid;
+
+tags: postgres tablespace listar tablespaces
+
+
 Criar banco com base em um já existente.
 
 CREATE DATABASE m2m_frota_eog_db 
@@ -210,6 +226,16 @@ Dar permissões de usuários no MySql.
 grant all privileges on somedb.* to targino@"%" identified by '123456';
 
 tags: permissões mysql
+
+
+[[Rede]]
+
+Linha de comando usada para pegar os dados que chegam em uma determinadas porta.
+gravar num arquivo para ser analisado via wireshark.
+
+sudo tcpdump -s 10000 -v -X -i eth0 port 7701 -c 5000 -w targino.log
+
+tags: tcpdump wireshark
 
 
 [[Linux]]
