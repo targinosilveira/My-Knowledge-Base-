@@ -238,6 +238,13 @@ sudo tcpdump -s 10000 -v -X -i eth0 port 7701 -c 5000 -w targino.log
 tags: tcpdump wireshark
 
 
+Comando para configurar interface virtual numa interface de rede.
+
+ifconfig eth0:0 50.30.39.11 netmask 255.255.255.0 up
+
+tags: rede interface virtual
+
+
 [[Linux]]
 
 
