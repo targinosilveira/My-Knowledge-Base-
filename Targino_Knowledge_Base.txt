@@ -32,6 +32,19 @@ tags: java debian debian6.0 jdk jdk6
 [[Postgres]]
 
 
+Alterando tablespaces de Banco, Tabela e Indices
+
+ALTER DATABASE "[database_name]" SET default_tablespace = [new_tablespace];
+
+ALTER TABLE "[table_name]" SET TABLESPACE "[new_tablespace]";
+
+ALTER INDEX "[index_name]" SET TABLESPACE "[new_tablespace]";
+
+
+tags: tablespace alter 
+
+
+
 Instalando o Postgres 8.3 
 
 apt-get install postgresql-8.3 postgresql-client-8.3 postgresql-contrib-8.3 postgresql-8.3-postgis
@@ -98,6 +111,13 @@ Select para contar a quantidade de veículos que transmitiram durante um periodo 
 select count(*) from (select distinct(vehicle_vehicleid) from metric where metrictimestamp between '2011-12-19 00:00:00.000' and '2011-12-19 23:59:59.999') as count;
 
 tags: select transmissões count
+
+
+Select para listar as bases de dados com seus respectivos tamanhos.
+
+select datname, pg_size_pretty(pg_database_size(datname)) from pg_database;
+
+tags: postgres tamanho de base de dados.
 
 
 Select para listar base de dados e tablespaces 
@@ -261,6 +281,38 @@ Configurando proxy no Linux via linha de comando
 export http_proxy="http://usuario:senha@ip:porta"
 
 tags: linux proxy shell
+
+
+Localizar e deletar aquivos mais velhos que X dias
+
+find /caminho/para/arquivos/* -mtime +5 -exec rm {} \;
+
+tags: find deletar arquivos
+
+
+Parametro de uso do cronjob
+
+crontab -e #para cronjob do usuário
+
+sudo crontab -e # para o crontab do superusuário
+
+30	22	*		*		5		usuário  comando.sh
+ |	|		|		|		|				|					|----> Linha de comando a ser executada.
+ |	|		|		|		|				|--------------> Usuário, deixe em branco caso esteja no cron do usuário.
+ |	|		|		|		|----------------------> Dia da semana em que será executado.
+ |	|		|		|--------------------------> Mês em que será executado.
+ |	|		|------------------------------> Dia do mês em que será executado.
+ |	|----------------------------------> Hora em que será executado.
+ |-------------------------------------> Minuto em que será executado.
+ 
+Minutos: 				0 - 59
+Horas:	 				1 - 23 
+Dias do Mês:		1 - 31
+Mês:						1 - 12
+Dias da Semana:	0 - 7:
+0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta, 4 = Quinta, 5 = Sexta, 6 = Sabado, 7 = Domingo.
+
+tags: cron conjobs crontab agendamentos
 
 
 Correção do erro de locales do perl no linux.
