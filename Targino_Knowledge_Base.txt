@@ -135,7 +135,7 @@ ORDER BY 1;
 tags: tablespace database
 
 
-Select para verificar o tamanho das tabelas de um banco
+Query para verificar o tamanho das tabelas de um banco
 
 SELECT esquema, tabela,
        pg_size_pretty(pg_relation_size(esq_tab)) AS tamanho,
@@ -150,7 +150,7 @@ SELECT esquema, tabela,
 
 tags: tabelas postgres
 
-Querie para varificar a existencia de registros duplicados.
+Query para varificar a existencia de registros duplicados.
 
 SELECT vehicleid, 
 COUNT(vehicleid) AS numero_de_ocorrencias
@@ -159,6 +159,25 @@ GROUP BY vehicleid
 HAVING ( COUNT(vehicleid) > 1 )
 
 tags: registros duplicados
+
+
+Query para verificar quantas metricas podem ser deletadas sem afetar a integridade dos registros da tabela de veículos
+
+select 		count(*) 
+from 			metric 
+where 		metrictimestamp 
+between 	'2012-02-22 00:00:00.0000' 
+and 			'2012-02-22 23:59:59.9999'
+and				metricid not in(select 		metric_id 
+													from 			(select beforemostrecent_metricid as metric_id from vehicle where beforemostrecent_metricid notnull
+													union
+																		select mostrecent_metricid as metric_id from vehicle where mostrecent_metricid notnull
+													union
+ 																		select oldesttoreprocess_metricid as metric_id from vehicle where oldesttoreprocess_metricid notnull
+													union
+																		select lastmetriconline_metricid as metric_id from vehicle where lastmetriconline_metricid notnull) as metrics);
+
+tags: deleção metricas
 
 Desabilita as constraints em uma transação
 
@@ -477,7 +496,15 @@ tar -vzxf nomedoarquivo.tar.gz
 
 tags: tar.gz descompactar
 
-Artigo que ensina como verificar a performace de um servidor
+Compactar um arquivo do tipo tar.gz
+
+tar -zcf nomedoarquivo.tar.gz caminho_do_arquivo_ou_diretorio
+
+tags: tar.gz compactar
+
+
+Artigo que ensina como verif
+icar a performace de um servidor
 
 http://www.vivaolinux.com.br/artigo/Bottlenecks-Metricas-de-performance-de-servidores?pagina=1
 
@@ -559,5 +586,8 @@ sudo ruby setup.rb
 sudo ln -s /usr/bin/gem1.8 /usr/bin/gem 
 
 tags: ruby rubygem
+
+
+
 
 
