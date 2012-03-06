@@ -415,6 +415,26 @@ usuario ALL=NOPASSWD:ALL
 Tags: linux sudo root
 
 
+Comando para criar usuário e passar a senha do mesmo
+
+#Cria uma variavel com a senha
+password="secret" 
+#Encrypita o conteudo da variavel dentro de uma nova
+pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+#Imprime o valor da varialve encryptografada
+echo $pass
+
+#Adiciona o usuário com senha cryptografada e ao grupo do mesmo
+useradd -p $pass -g grupo login
+
+Eg:
+password="senhadesejada" 
+pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+sudo useradd -p $pass -s /bin/bash -e 2012-03-07 -g grupo usuario
+
+tags:usuarios useradd
+
+
 Bloqueando e desbloqueando usuários no Linux.
 
 usermod -L usuário  #desbloqueia o usuário
@@ -588,6 +608,8 @@ sudo ln -s /usr/bin/gem1.8 /usr/bin/gem
 tags: ruby rubygem
 
 
-
+08185153435 - Junior
+08187133747 - Weslley Celular
+08130388613 - Weslley Residencia
 
 
