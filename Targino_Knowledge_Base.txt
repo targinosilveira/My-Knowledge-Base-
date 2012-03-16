@@ -267,6 +267,12 @@ grant all privileges on somedb.* to targino@"%" identified by '123456';
 tags: permissões mysql
 
 
+Comando para parar o mysql remotamente.
+
+mysqladmin -u root -ppassword shutdown 
+
+tags: mysqladmin 
+
 [[Rede]]
 
 Linha de comando usada para pegar os dados que chegam em uma determinadas porta.
@@ -300,6 +306,13 @@ Configurando proxy no Linux via linha de comando
 export http_proxy="http://usuario:senha@ip:porta"
 
 tags: linux proxy shell
+
+
+Listar processos por usuário com % de uso da CPU.
+
+ps -u user -eo pcpu,pid,user,args | sort -r -k1 | less
+
+tags: processos cpu user 
 
 
 Localizar e deletar aquivos mais velhos que X dias
