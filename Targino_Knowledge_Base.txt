@@ -621,8 +621,77 @@ sudo ln -s /usr/bin/gem1.8 /usr/bin/gem
 tags: ruby rubygem
 
 
+[[IPTABLE]]
+
+Regra de redicionamento da porta 80 para a porta do tomcat
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port porta_do_tomcat
+
+
+Configuração do gerenciamento de métricas.
+
+1º Instala o RVM
+  bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+
+2º Adcionar as configurações do RVM no profile do usuário
+  source /home/m2m/.rvm/scripts/rvm
+
+3º Testar se o RVM foi instalado com sucesso.
+  rvm
+
+4º Instalar o libpq-dev
+  sudo apt-get install libpq-dev 
+
+5º Instalar o zlib no RVM
+  rvm pkg install zlib
+
+6º Instalar o Ruby 1.8.7
+  rvm install 1.8.7
+
+7º Ativar o Ruby 1.8.7 no RVM
+  rvm use 1.8.7
+
+8º Instalar a biblioteca de conexão com o Postgres
+  gem install pg --no-ri --no-rdoc
+
+9º Copia o script de gerenciamento das metricas.
+
+10º Dropar a chaves estrageiras das tabelas
+  vehicle
+  (beforemostrecent_metricid)
+  (mostrecent_metricid)
+  (oldesttoreprocess_metricid)
+  (lastmetriconline_metricid)
+
+  tb_vehicle_out_route
+
+  tb_vehicle_cache_metric 
+  (metric_id)
+
+  ALTER TABLE tabela DROP CONSTRAINT constraint;
+
+11º Criar o diretorio que será usado como table space do banco.
+  mkdir /pgolddata/ts_nome_do_banco
+
+12º Alterar o dono do diretório para "/pgolddata/ts_nome_do_banco" para o usuário "postgres" 
+  chown postgres:postgres -R /pgolddata/ts_nome_do_banco
+
+13º Cria a tablespace para o banco.
+  CREATE TABLESPACE ts_nome_do_banco LOCATION '/pgolddata/ts_nome_do_banco';
+
+14º Criar a tabela de metric_old
+  CREATE TABLE metric_old () INHERITS(metric);
+
+15º Criar os indices da tabela de metric_old 
+  m2m_frota_jabour_db=# CREATE INDEX metric_old_idx ON metric_old(vehicle_vehicleid, metrictimestamp);
+  CREATE INDEX
+  Time: 84.667 ms
+  m2m_frota_jabour_db=# CREATE INDEX metric_old_metrictimetimestamp_idx ON metric_old(metrictimestamp);
+  CREATE INDEX
+  Time: 306.666 ms
+
+
+4º Instalar o Ruby 1.8.7
+  rvm install 1.8.7
 08185153435 - Junior
 08187133747 - Weslley Celular
 08130388613 - Weslley Residencia
-
-
