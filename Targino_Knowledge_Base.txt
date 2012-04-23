@@ -641,6 +641,10 @@ Configuração do gerenciamento de métricas.
 4º Instalar o libpq-dev
   sudo apt-get install libpq-dev 
 
+  Instalar pacote de compiladores C 
+
+  sudo apt-get install gcc make g++
+
 5º Instalar o zlib no RVM
   rvm pkg install zlib
 
@@ -654,6 +658,9 @@ Configuração do gerenciamento de métricas.
   gem install pg --no-ri --no-rdoc
 
 9º Copia o script de gerenciamento das metricas.
+  scp m2m_metric_magager.rb m2m@69.64.56.101:/opt/m2m/m2mscripts/database/m2m_metric_manager
+
+  /opt/m2m/m2mscripts/logs
 
 10º Dropar a chaves estrageiras das tabelas
   vehicle
@@ -679,7 +686,7 @@ Configuração do gerenciamento de métricas.
   CREATE TABLESPACE ts_nome_do_banco LOCATION '/pgolddata/ts_nome_do_banco';
 
 14º Criar a tabela de metric_old
-  CREATE TABLE metric_old () INHERITS(metric);
+  CREATE TABLE metric_old () INHERITS(metric) TABLESPACE ts_nome_do_banco ;
 
 15º Criar os indices da tabela de metric_old 
   m2m_frota_jabour_db=# CREATE INDEX metric_old_idx ON metric_old(vehicle_vehicleid, metrictimestamp);
