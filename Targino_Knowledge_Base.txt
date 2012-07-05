@@ -3,7 +3,7 @@ My Knowledge Base
 
 [[Business]]
 
-//Empresa com serviços e gerenciamentos iguais aos da Millennium IT & Dev Corporation.
+//Empresa com serviï¿½os e gerenciamentos iguais aos da Millennium IT & Dev Corporation.
 
 Corporation http://www.frontrange.com/
 
@@ -57,14 +57,14 @@ Instalando o Postgis para o Postgres 8.3
 apt-get install postgresql-8.3-postgis
 
 
-Criando o cluster postgres quando a instalação não consegue fazer
+Criando o cluster postgres quando a instalaï¿½ï¿½o nï¿½o consegue fazer
 
 pg_createcluster 8.3 main --start
 
-tags postgres instalação
+tags postgres instalaï¿½ï¿½o
 
 
-Alterar a memoria compartilhada do linux para aumentar a quantidade de conexões
+Alterar a memoria compartilhada do linux para aumentar a quantidade de conexï¿½es
 
 
 Instalando o Postgresql9.1 no Debian Sqeeze 
@@ -92,25 +92,37 @@ sudo sysctl -w kernel.shmall=6177438
 
 tags:linux mamoria compartilhada postgres max_conections
 
+Alterando a senha do usuario postgres
 
-Data Atual SEM “Time Zone”
+$ vi /var/lib/pgsql/data/pg_hba.conf
+# <em>Old Line:</em>
+local all postgres password
+# <em>Change it to:</em>
+local all postgres trust
+
+/etc/init.d/postgresql restart
+
+tags: postgres change passwords.
+
+
+Data Atual SEM ï¿½Time Zoneï¿½
 //Retorna a data atual formatada por data e hora com minutos e segundos.
 select LOCALTIMESTAMP (0)
 
 Tags: current_time postgres data hora
 
-Select para saber a versão do postgres  
+Select para saber a versï¿½o do postgres  
 
 SELECT version();
 
-tags: postgres versão
+tags: postgres versï¿½o
 
 
-Select para contar a quantidade de veículos que transmitiram durante um periodo de tempo.
+Select para contar a quantidade de veï¿½culos que transmitiram durante um periodo de tempo.
 
 select count(*) from (select distinct(vehicle_vehicleid) from metric where metrictimestamp between '2011-12-19 00:00:00.000' and '2011-12-19 23:59:59.999') as count;
 
-tags: select transmissões count
+tags: select transmissï¿½es count
 
 
 Select para listar as bases de dados com seus respectivos tamanhos.
@@ -161,7 +173,7 @@ HAVING ( COUNT(vehicleid) > 1 )
 tags: registros duplicados
 
 
-Query para verificar quantas metricas podem ser deletadas sem afetar a integridade dos registros da tabela de veículos
+Query para verificar quantas metricas podem ser deletadas sem afetar a integridade dos registros da tabela de veï¿½culos
 
 select 		count(*) 
 from 			metric 
@@ -177,16 +189,16 @@ and				metricid not in(select 		metric_id
 													union
 																		select lastmetriconline_metricid as metric_id from vehicle where lastmetriconline_metricid notnull) as metrics);
 
-tags: deleção metricas
+tags: deleï¿½ï¿½o metricas
 
-Desabilita as constraints em uma transação
+Desabilita as constraints em uma transaï¿½ï¿½o
 
 SET CONSTRAINTS ALL DEFERRED;
 
 tags: constraints desabilitar 
 
 
-Alterar a senha do usuário postgres
+Alterar a senha do usuï¿½rio postgres
 precisa estar logado como root no postgres e entrar psql
 ALTER USER postgres WITH PASSWORD 'novasenha'
 
@@ -200,7 +212,7 @@ Listar a estrutura de uma tabela.
 tags: postgres estrutura de tabela
 
 
-Ativa o timing de execução de consultas no psql do postgres
+Ativa o timing de execuï¿½ï¿½o de consultas no psql do postgres
 
 \timing 
 
@@ -225,7 +237,7 @@ WHERE T.spcowner = U.usesysid;
 tags: postgres tablespace listar tablespaces
 
 
-Criar banco com base em um já existente.
+Criar banco com base em um jï¿½ existente.
 
 CREATE DATABASE m2m_frota_eog_db 
 OWNER postgres 
@@ -243,7 +255,7 @@ tags: postgres create database template
 Exportar tabelas ou consultas para TXT ou CSV
 \COPY (select * from metric limit 3) TO '/caminho_do_arquivo_a_ser_gerado.csv' WITH DELIMITER ';' NULL 'null' CSV  HEADER
 
-tags: postgres exportação CSV 
+tags: postgres exportaï¿½ï¿½o CSV 
 
 Alterar nome de uma banco de dados
 
@@ -260,11 +272,11 @@ http://keniamilene.wordpress.com/2008/03/14/alterando-tablespace-de-tabelas-e-in
 
 [[MySql]]
 
-Dar permissões de usuários no MySql.
+Dar permissï¿½es de usuï¿½rios no MySql.
 
 grant all privileges on somedb.* to targino@"%" identified by '123456';
 
-tags: permissões mysql
+tags: permissï¿½es mysql
 
 
 Comando para parar o mysql remotamente.
@@ -293,7 +305,7 @@ tags: rede interface virtual
 [[Linux]]
 
 
-Verificação de MPT RAID
+Verificaï¿½ï¿½o de MPT RAID
 
 lspci | grep -i mpt # will tell you if the RAID controller is an MPT RAID controller or not. If it is, 
 apt-get install mpt-status # will install the RAID status package.
@@ -308,7 +320,7 @@ export http_proxy="http://usuario:senha@ip:porta"
 tags: linux proxy shell
 
 
-Listar processos por usuário com % de uso da CPU.
+Listar processos por usuï¿½rio com % de uso da CPU.
 
 ps -u user -eo pcpu,pid,user,args | sort -r -k1 | less
 
@@ -324,30 +336,30 @@ tags: find deletar arquivos
 
 Parametro de uso do cronjob
 
-crontab -e #para cronjob do usuário
+crontab -e #para cronjob do usuï¿½rio
 
-sudo crontab -e # para o crontab do superusuário
+sudo crontab -e # para o crontab do superusuï¿½rio
 
-30	22	*		*		5		usuário  comando.sh
+30	22	*		*		5		usuï¿½rio  comando.sh
  |	|		|		|		|				|					|----> Linha de comando a ser executada.
- |	|		|		|		|				|--------------> Usuário, deixe em branco caso esteja no cron do usuário.
- |	|		|		|		|----------------------> Dia da semana em que será executado.
- |	|		|		|--------------------------> Mês em que será executado.
- |	|		|------------------------------> Dia do mês em que será executado.
- |	|----------------------------------> Hora em que será executado.
- |-------------------------------------> Minuto em que será executado.
+ |	|		|		|		|				|--------------> Usuï¿½rio, deixe em branco caso esteja no cron do usuï¿½rio.
+ |	|		|		|		|----------------------> Dia da semana em que serï¿½ executado.
+ |	|		|		|--------------------------> Mï¿½s em que serï¿½ executado.
+ |	|		|------------------------------> Dia do mï¿½s em que serï¿½ executado.
+ |	|----------------------------------> Hora em que serï¿½ executado.
+ |-------------------------------------> Minuto em que serï¿½ executado.
  
 Minutos: 				0 - 59
 Horas:	 				1 - 23 
-Dias do Mês:		1 - 31
-Mês:						1 - 12
+Dias do Mï¿½s:		1 - 31
+Mï¿½s:						1 - 12
 Dias da Semana:	0 - 7:
-0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta, 4 = Quinta, 5 = Sexta, 6 = Sabado, 7 = Domingo.
+0 = Domingo, 1 = Segunda, 2 = Terï¿½a, 3 = Quarta, 4 = Quinta, 5 = Sexta, 6 = Sabado, 7 = Domingo.
 
 tags: cron conjobs crontab agendamentos
 
 
-Correção do erro de locales do perl no linux.
+Correï¿½ï¿½o do erro de locales do perl no linux.
 
 perl: warning: Setting locale failed.
 perl: warning: Please check that your locale settings:
@@ -378,7 +390,7 @@ lsof -w -n -i tcp:8080
 
 Tags: processo porta kill
 
-Enviando e-mail através do shell script
+Enviando e-mail atravï¿½s do shell script
 echo "Enviando e-mail via shell script...." | mail -s "Targino eh o cara" targino_silveira@yahoo.com.br
 
 tags: shell script email
@@ -398,37 +410,37 @@ ssh-copy-id -i ~/.ssh/id_dsa.pub unidentalbk@67.205.57.126
 tags: ssh chave publica acesso remoto 
 
 Fazer bootable.
-Fazer com transformar uma partição bootlable.
+Fazer com transformar uma partiï¿½ï¿½o bootlable.
 
 fdisk /dev/sdb
-opção a <enter>
-opção w <enter>
+opï¿½ï¿½o a <enter>
+opï¿½ï¿½o w <enter>
 
-tags: linux partição
+tags: linux partiï¿½ï¿½o
 
-Criar partições em discos.
+Criar partiï¿½ï¿½es em discos.
 
 fdisk /dev/sdb--o dispositivo
-opção n <enter>
-opção w <enter>
+opï¿½ï¿½o n <enter>
+opï¿½ï¿½o w <enter>
 
-tags: linux partição
+tags: linux partiï¿½ï¿½o
 
 
-Formata uma partição com o tipo de file system ext3
+Formata uma partiï¿½ï¿½o com o tipo de file system ext3
 
 sudo mkfs -t ext3 -L pgdata1 -v /dev/sdc1
 
-tags: linux partição formatar formatação
+tags: linux partiï¿½ï¿½o formatar formataï¿½ï¿½o
 
-Executa comando com sudo sem digitar senha do usuário
-//Edite o arquivo sudores e ponha a opção NOPASSWORD
+Executa comando com sudo sem digitar senha do usuï¿½rio
+//Edite o arquivo sudores e ponha a opï¿½ï¿½o NOPASSWORD
 usuario ALL=NOPASSWD:ALL
 
 Tags: linux sudo root
 
 
-Comando para criar usuário e passar a senha do mesmo
+Comando para criar usuï¿½rio e passar a senha do mesmo
 
 #Cria uma variavel com a senha
 password="secret" 
@@ -437,7 +449,7 @@ pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
 #Imprime o valor da varialve encryptografada
 echo $pass
 
-#Adiciona o usuário com senha cryptografada e ao grupo do mesmo
+#Adiciona o usuï¿½rio com senha cryptografada e ao grupo do mesmo
 useradd -p $pass -g grupo login
 
 Eg:
@@ -448,19 +460,19 @@ sudo useradd -p $pass -s /bin/bash -e 2012-03-07 -g grupo usuario
 tags:usuarios useradd
 
 
-Bloqueando e desbloqueando usuários no Linux.
+Bloqueando e desbloqueando usuï¿½rios no Linux.
 
-usermod -L usuário  #desbloqueia o usuário
+usermod -L usuï¿½rio  #desbloqueia o usuï¿½rio
 
-usermod -L usuário  #bloqueia o usuário
+usermod -L usuï¿½rio  #bloqueia o usuï¿½rio
 
 tags: usuario bloquear
 
-Montando uma partição 
+Montando uma partiï¿½ï¿½o 
 
 sudo mount -t tipo /dev/dispositivo -rw /diretorio_para_sermontado
 
-tags: linux partição ext3
+tags: linux partiï¿½ï¿½o ext3
 
 
 Montando os diretorios "/proc" "/dev" "pts"
@@ -471,11 +483,11 @@ mount -o bind /dev/pts /chroot/dev/pts
 
 tags mountar direotorios 
 
-Desmontando uma partição 
+Desmontando uma partiï¿½ï¿½o 
 
 sudo umount /dev/dispositivo
 
-tags: linux partição ext3
+tags: linux partiï¿½ï¿½o ext3
 
 
 Alterando o timezone 
@@ -483,7 +495,7 @@ Alterando o timezone
 dpkg-reconfigure tzdata
 
 
-Usando o comando cut para cortar pedaços desejados do texto.
+Usando o comando cut para cortar pedaï¿½os desejados do texto.
 $ echo 'aaa:bbb:ccc' | cut -f1 -d':'
 aaa
 
@@ -496,12 +508,12 @@ find /path/to/files* -mtime +5 -exec rm {} \;
 tags: linux arquivos deletar
 	
 	
-Montando partição pelo fstab
+Montando partiï¿½ï¿½o pelo fstab
 
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 /dev/sdc1       /pgdata2        ext3    defaults        0       0
 
-tags: linux partição ext3 fstab
+tags: linux partiï¿½ï¿½o ext3 fstab
 
 sudo vim /etc/timezone
 
@@ -510,7 +522,7 @@ America/Fortaleza
 export TZ=America/Fortaleza
 
 
-Deletando arquivos através de busca pelo find.
+Deletando arquivos atravï¿½s de busca pelo find.
 
 rm -rf `find . -type d -name .svn`
 
@@ -551,7 +563,7 @@ dd if=/dev/zero of=/tmp/arquivo.img bs=1M count=100
 
 if=origem (/dev/zero)
 of=um_destino_qualquer
-bs= tamanho do bloco em Bytes (abreviações Mega,Giga)
+bs= tamanho do bloco em Bytes (abreviaï¿½ï¿½es Mega,Giga)
 count= copia N vezes bs para o arquivo
 
 tags: dd criacao de arquivos 
@@ -561,7 +573,7 @@ tags: dd criacao de arquivos
 
 [[[Lenny]]]
 
-Lista de fontes para instalação e atualização de programas.
+Lista de fontes para instalaï¿½ï¿½o e atualizaï¿½ï¿½o de programas.
 
 ###### Debian Main Repos
 deb http://ftp.br.debian.org/debian/ lenny main contrib non-free
@@ -592,7 +604,7 @@ tags: m2m cameras
 Link para cadastros de paineis do M2M Frota Web.
 http://173.224.120.20:8802/forecast/pages/panel05/index.html?panel=panel05&locale=pt_BR&panelId=
 
-tags: m2m paineis previsão
+tags: m2m paineis previsï¿½o
 
 [[Links e Sites]]
 
@@ -627,42 +639,42 @@ Regra de redicionamento da porta 80 para a porta do tomcat
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port porta_do_tomcat
 
 
-Configuração do gerenciamento de métricas.
+Configuraï¿½ï¿½o do gerenciamento de mï¿½tricas.
 
-1º Instala o RVM
+1ï¿½ Instala o RVM
   bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
 
-2º Adcionar as configurações do RVM no profile do usuário
+2ï¿½ Adcionar as configuraï¿½ï¿½es do RVM no profile do usuï¿½rio
   source /home/m2m/.rvm/scripts/rvm
 
-3º Testar se o RVM foi instalado com sucesso.
+3ï¿½ Testar se o RVM foi instalado com sucesso.
   rvm
 
-4º Instalar o libpq-dev
+4ï¿½ Instalar o libpq-dev
   sudo apt-get install libpq-dev 
 
   Instalar pacote de compiladores C 
 
   sudo apt-get install gcc make g++
 
-5º Instalar o zlib no RVM
+5ï¿½ Instalar o zlib no RVM
   rvm pkg install zlib
 
-6º Instalar o Ruby 1.8.7
+6ï¿½ Instalar o Ruby 1.8.7
   rvm install 1.8.7
 
-7º Ativar o Ruby 1.8.7 no RVM
+7ï¿½ Ativar o Ruby 1.8.7 no RVM
   rvm use 1.8.7
 
-8º Instalar a biblioteca de conexão com o Postgres
+8ï¿½ Instalar a biblioteca de conexï¿½o com o Postgres
   gem install pg --no-ri --no-rdoc
 
-9º Copia o script de gerenciamento das metricas.
+9ï¿½ Copia o script de gerenciamento das metricas.
   scp m2m_metric_magager.rb m2m@69.64.56.101:/opt/m2m/m2mscripts/database/m2m_metric_manager
 
   /opt/m2m/m2mscripts/logs
 
-10º Dropar a chaves estrageiras das tabelas
+10ï¿½ Dropar a chaves estrageiras das tabelas
   vehicle
   (beforemostrecent_metricid)
   (mostrecent_metricid)
@@ -676,19 +688,19 @@ Configuração do gerenciamento de métricas.
 
   ALTER TABLE tabela DROP CONSTRAINT constraint;
 
-11º Criar o diretorio que será usado como table space do banco.
+11ï¿½ Criar o diretorio que serï¿½ usado como table space do banco.
   mkdir /pgolddata/ts_nome_do_banco
 
-12º Alterar o dono do diretório para "/pgolddata/ts_nome_do_banco" para o usuário "postgres" 
+12ï¿½ Alterar o dono do diretï¿½rio para "/pgolddata/ts_nome_do_banco" para o usuï¿½rio "postgres" 
   chown postgres:postgres -R /pgolddata/ts_nome_do_banco
 
-13º Cria a tablespace para o banco.
+13ï¿½ Cria a tablespace para o banco.
   CREATE TABLESPACE ts_nome_do_banco LOCATION '/pgolddata/ts_nome_do_banco';
 
-14º Criar a tabela de metric_old
+14ï¿½ Criar a tabela de metric_old
   CREATE TABLE metric_old () INHERITS(metric) TABLESPACE ts_nome_do_banco ;
 
-15º Criar os indices da tabela de metric_old 
+15ï¿½ Criar os indices da tabela de metric_old 
   m2m_frota_jabour_db=# CREATE INDEX metric_old_idx ON metric_old(vehicle_vehicleid, metrictimestamp);
   CREATE INDEX
   Time: 84.667 ms
@@ -697,7 +709,7 @@ Configuração do gerenciamento de métricas.
   Time: 306.666 ms
 
 
-4º Instalar o Ruby 1.8.7
+4ï¿½ Instalar o Ruby 1.8.7
   rvm install 1.8.7
 08185153435 - Junior
 08187133747 - Weslley Celular
