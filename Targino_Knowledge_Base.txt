@@ -459,6 +459,13 @@ sudo useradd -p $pass -s /bin/bash -e 2012-03-07 -g grupo usuario
 
 tags:usuarios useradd
 
+Comando para alterar senha de usuários automaticamente.
+user="usuario"
+password="senha"
+pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+usermod $user -p $pass
+
+
 
 Bloqueando e desbloqueando usu�rios no Linux.
 
