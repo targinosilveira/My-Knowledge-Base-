@@ -304,6 +304,12 @@ tags: rede interface virtual
 
 [[Linux]]
 
+Configuração para formatar o history com Data e Hora.
+
+echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile
+
+tags: history
+
 
 Verifica��o de MPT RAID
 
