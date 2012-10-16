@@ -654,7 +654,7 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port porta_do_t
 Configura��o do gerenciamento de m�tricas.
 
 1� Instala o RVM
-  bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+  \curl -L https://get.rvm.io | bash -s stable --ruby
 
 2� Adcionar as configura��es do RVM no profile do usu�rio
   source /home/m2m/.rvm/scripts/rvm
